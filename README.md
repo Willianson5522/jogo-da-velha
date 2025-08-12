@@ -57,7 +57,7 @@ Siga os passos abaixo para configurar e rodar o projeto em sua máquina local.
 ### 1. Clone o Repositório
 
 ```sh
-git clone https://github.com/seu-usuario/velha-game.git
+git clone https://github.com/Willianson5522/jogo-da-velha.git
 cd velha-game
 ```
 
