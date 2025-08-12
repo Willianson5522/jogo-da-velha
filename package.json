@@ -1,0 +1,27 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "Jogo da Velha Multiplayer Responsivo",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "tic-tac-toe",
+    "jogo-da-velha",
+    "javascript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "transform": {
+      "\\.[jt]sx?$": "babel-jest"
+    }
+  }
+}

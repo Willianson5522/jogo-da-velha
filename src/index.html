@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <h1>Jogo da Velha</h1>
+        <div id="status-container">
+            <p id="status-message">Jogador X, é a sua vez!</p>
+        </div>
+        <div id="board" class="board"></div>
+        <div id="scoreboard">
+            <h2>Placar</h2>
+            <p>Jogador X: <span id="score-x">0</span></p>
+            <p>Jogador O: <span id="score-o">0</span></p>
+        </div>
+        <button id="restart-button">Reiniciar Jogo</button>
+    </main>
+    <script src="app.js" type="module"></script>
+</body>
+</html>
