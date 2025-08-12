@@ -7,6 +7,35 @@ import * as Game from './game.js';
 import * as UI from './ui.js';
 
 const restartButton = document.getElementById('restart-button');
+const themeToggle = document.getElementById('checkbox');
+const body = document.body;
+
+/**
+ * Aplica o tema salvo ou o tema padrão.
+ */
+function applyTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light-mode') {
+        body.classList.add('light-mode');
+        themeToggle.checked = true;
+    } else {
+        body.classList.remove('light-mode');
+        themeToggle.checked = false;
+    }
+}
+
+/**
+ * Alterna entre o modo claro e escuro.
+ */
+function toggleTheme() {
+    if (themeToggle.checked) {
+        body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light-mode');
+    } else {
+        body.classList.remove('light-mode');
+        localStorage.setItem('theme', 'dark-mode');
+    }
+}
 
 /**
  * Lida com o clique em uma célula do tabuleiro.
@@ -52,10 +81,12 @@ function handleRestartClick() {
  */
 function initializeGame() {
     Game.loadScores();
+    applyTheme(); // Apply theme on load
     UI.renderBoard(handleCellClick);
     UI.updateStatusMessage(Game.getGameState().currentPlayer);
     UI.updateScores(Game.getGameState().scores);
     restartButton.addEventListener('click', handleRestartClick);
+    themeToggle.addEventListener('change', toggleTheme); // Add theme toggle listener
 }
 
 // Inicia o jogo quando o DOM estiver totalmente carregado

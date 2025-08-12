@@ -1,13 +1,30 @@
 :root {
+    /* Dark Theme */
     --bg-color: #1a1a2e;
     --primary-color: #16213e;
     --secondary-color: #0f3460;
     --accent-color: #e94560;
     --font-color: #ffffff;
+
+    /* Light Theme (overrides for light-mode class) */
+    --light-bg-color: #f0f2f5;
+    --light-primary-color: #ffffff;
+    --light-secondary-color: #e0e2e5;
+    --light-accent-color: #3498db;
+    --light-font-color: #333333;
+
     --font-family: 'Poppins', sans-serif;
     --cell-size: 100px;
     --border-radius: 10px;
     --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode {
+    --bg-color: var(--light-bg-color);
+    --primary-color: var(--light-primary-color);
+    --secondary-color: var(--light-secondary-color);
+    --accent-color: var(--light-accent-color);
+    --font-color: var(--light-font-color);
 }
 
 * {
@@ -147,4 +164,67 @@ h2 {
     .container {
         padding: 1.5rem;
     }
+}
+
+/* Theme Switch Styles */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.theme-switch-wrapper em {
+    margin-left: 10px;
+    font-size: 0.9rem;
+    color: var(--font-color);
 }
