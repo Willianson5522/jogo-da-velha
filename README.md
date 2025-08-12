@@ -4,6 +4,8 @@ Este é um projeto de um jogo da velha (tic-tac-toe) multiplayer local, desenvol
 
 ## Visão Geral
 
+Jogue agora: [https://willianson5522.github.io/jogo-da-velha/](https://willianson5522.github.io/jogo-da-velha/)
+
 O jogo foi projetado para ser totalmente responsivo, funcionando perfeitamente em desktops e dispositivos móveis. A lógica do jogo, a manipulação da interface e o controle geral são separados em módulos JavaScript para maior clareza e manutenibilidade.
 
 ### Features
