@@ -11,13 +11,13 @@ O jogo foi projetado para ser totalmente responsivo, funcionando perfeitamente e
 ### Features
 
 -   **Tabuleiro Dinâmico 3x3**: Renderizado com JavaScript.
--   **Multiplayer Local**: Dois jogadores (X e O) podem competir no mesmo dispositivo.
+-   **Multiplayer Local**: Dois jogadores podem inserir seus nomes e competir no mesmo dispositivo.
 -   **Indicação de Turno**: Uma mensagem clara informa qual jogador deve jogar.
 -   **Detecção de Vitória e Empate**: O jogo identifica automaticamente o fim da partida e exibe o resultado.
 -   **Reiniciar Partida**: Um botão permite que os jogadores comecem um novo jogo a qualquer momento.
 -   **Placar Persistente**: A pontuação é salva no `localStorage` do navegador e persiste entre as sessões.
 -   **Modo Claro/Escuro**: Alterna entre um tema escuro padrão e um tema claro, com preferência salva no `localStorage`.
--   **Design Moderno**: Interface limpa e agradável com animações sutis.
+-   **Design Moderno**: Interface limpa e agradável com animações sutis e avançadas para feedback visual.
 
 ## Tecnologias Utilizadas
 

@@ -8,6 +8,7 @@ const state = {
     board: Array(9).fill(null),
     currentPlayer: 'X',
     isGameActive: true,
+    players: [], // Will store [{ name: 'Player X', symbol: 'X' }, { name: 'Player O', symbol: 'O' }]
     scores: {
         X: 0,
         O: 0
@@ -20,6 +21,36 @@ const winCombinations = [
     [0, 3, 6], [1, 4, 7], [2, 5, 8], // Colunas
     [0, 4, 8], [2, 4, 6]             // Diagonais
 ];
+
+/**
+ * Inicializa os jogadores com seus nomes e símbolos.
+ * @param {string} player1Name - Nome do Jogador 1 (será 'X').
+ * @param {string} player2Name - Nome do Jogador 2 (será 'O').
+ */
+export function initializePlayers(player1Name, player2Name) {
+    state.players = [
+        { name: player1Name, symbol: 'X' },
+        { name: player2Name, symbol: 'O' }
+    ];
+    state.currentPlayer = 'X'; // Always start with X
+    // Reset scores if new players are set, or load if they match existing saved players
+    const savedScores = localStorage.getItem('ticTacToeScores');
+    if (savedScores) {
+        const parsedScores = JSON.parse(savedScores);
+        // Check if saved scores match current players
+        if (parsedScores.playerXName === player1Name && parsedScores.playerOName === player2Name) {
+            state.scores.X = parsedScores.X;
+            state.scores.O = parsedScores.O;
+        } else {
+            // New players, reset scores
+            state.scores.X = 0;
+            state.scores.O = 0;
+        }
+    } else {
+        state.scores.X = 0;
+        state.scores.O = 0;
+    }
+}
 
 /**
  * Retorna o estado atual do jogo.
@@ -90,9 +121,13 @@ export function resetGame() {
  * Carrega os placares do localStorage.
  */
 export function loadScores() {
+    // Scores are loaded during initializePlayers to handle player name changes
+    // This function is now primarily for internal use if scores need to be re-synced
     const savedScores = localStorage.getItem('ticTacToeScores');
     if (savedScores) {
-        state.scores = JSON.parse(savedScores);
+        const parsedScores = JSON.parse(savedScores);
+        state.scores.X = parsedScores.X || 0;
+        state.scores.O = parsedScores.O || 0;
     }
 }
 
@@ -100,5 +135,11 @@ export function loadScores() {
  * Salva os placares no localStorage.
  */
 export function saveScores() {
-    localStorage.setItem('ticTacToeScores', JSON.stringify(state.scores));
+    const scoresToSave = {
+        X: state.scores.X,
+        O: state.scores.O,
+        playerXName: state.players.find(p => p.symbol === 'X').name,
+        playerOName: state.players.find(p => p.symbol === 'O').name
+    };
+    localStorage.setItem('ticTacToeScores', JSON.stringify(scoresToSave));
 }

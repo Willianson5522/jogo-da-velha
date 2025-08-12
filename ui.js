@@ -1,3 +1,5 @@
+import { getGameState } from './game.js';
+
 /**
  * @file ui.js
  * @description Manipula todos os elementos da interface do usuário (DOM).
@@ -33,24 +35,43 @@ export function updateCell(index, player) {
     if (cell) {
         cell.textContent = player;
         cell.classList.add(player.toLowerCase());
+        // Add click animation
+        cell.classList.add('clicked');
+        cell.addEventListener('animationend', () => {
+            cell.classList.remove('clicked');
+        }, { once: true });
     }
 }
 
 /**
  * Atualiza a mensagem de status para indicar o jogador atual.
- * @param {string} player - O jogador atual.
+ * @param {string} currentPlayerSymbol - O símbolo do jogador atual.
  */
-export function updateStatusMessage(player) {
-    statusMessageElement.textContent = `Jogador ${player}, é a sua vez!`;
+export function updateStatusMessage(currentPlayerSymbol) {
+    const gameState = getGameState();
+    const currentPlayer = gameState.players.find(p => p.symbol === currentPlayerSymbol);
+    if (currentPlayer) {
+        statusMessageElement.textContent = `${currentPlayer.name}, é a sua vez!`;
+        statusMessageElement.style.animation = 'none'; // Reset animation
+        void statusMessageElement.offsetWidth; // Trigger reflow
+        statusMessageElement.style.animation = null; // Re-apply animation
+    }
 }
 
 /**
  * Exibe a mensagem de vitória e destaca as células vencedoras.
- * @param {string} winner - O jogador vencedor.
+ * @param {string} winnerSymbol - O símbolo do jogador vencedor.
  * @param {number[]} combination - A combinação de células vencedora.
  */
-export function showWinner(winner, combination) {
-    statusMessageElement.textContent = `Jogador ${winner} venceu!`;
+export function showWinner(winnerSymbol, combination) {
+    const gameState = getGameState();
+    const winnerPlayer = gameState.players.find(p => p.symbol === winnerSymbol);
+    if (winnerPlayer) {
+        statusMessageElement.textContent = `${winnerPlayer.name} venceu!`;
+        statusMessageElement.style.animation = 'none'; // Reset animation
+        void statusMessageElement.offsetWidth; // Trigger reflow
+        statusMessageElement.style.animation = null; // Re-apply animation
+    }
     combination.forEach(index => {
         const cell = boardElement.querySelector(`[data-index='${index}']`);
         cell.classList.add('winner');
@@ -62,6 +83,9 @@ export function showWinner(winner, combination) {
  */
 export function showDraw() {
     statusMessageElement.textContent = 'O jogo empatou!';
+    statusMessageElement.style.animation = 'none'; // Reset animation
+    void statusMessageElement.offsetWidth; // Trigger reflow
+    statusMessageElement.style.animation = null; // Re-apply animation
 }
 
 /**
@@ -80,6 +104,14 @@ export function clearBoard() {
  * @param {object} scores - O objeto de placares { X: scoreX, O: scoreO }.
  */
 export function updateScores(scores) {
-    scoreXElement.textContent = scores.X;
-    scoreOElement.textContent = scores.O;
+    const gameState = getGameState();
+    const playerX = gameState.players.find(p => p.symbol === 'X');
+    const playerO = gameState.players.find(p => p.symbol === 'O');
+
+    if (playerX) {
+        scoreXElement.textContent = `${playerX.name}: ${scores.X}`;
+    }
+    if (playerO) {
+        scoreOElement.textContent = `${playerO.name}: ${scores.O}`;
+    }
 }

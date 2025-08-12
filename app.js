@@ -10,6 +10,13 @@ const restartButton = document.getElementById('restart-button');
 const themeToggle = document.getElementById('checkbox');
 const body = document.body;
 
+// New elements for player setup
+const playerSetupContainer = document.getElementById('player-setup');
+const player1NameInput = document.getElementById('player1-name');
+const player2NameInput = document.getElementById('player2-name');
+const startGameButton = document.getElementById('start-game-button');
+const gameContainer = document.getElementById('game-container');
+
 /**
  * Aplica o tema salvo ou o tema padrão.
  */
@@ -80,14 +87,39 @@ function handleRestartClick() {
  * Inicializa o jogo.
  */
 function initializeGame() {
-    Game.loadScores();
     applyTheme(); // Apply theme on load
     UI.renderBoard(handleCellClick);
     UI.updateStatusMessage(Game.getGameState().currentPlayer);
     UI.updateScores(Game.getGameState().scores);
     restartButton.addEventListener('click', handleRestartClick);
-    themeToggle.addEventListener('change', toggleTheme); // Add theme toggle listener
+    themeToggle.addEventListener('change', toggleTheme);
+}
+
+/**
+ * Lida com o clique no botão Iniciar Jogo.
+ */
+function handleStartGameClick() {
+    const player1Name = player1NameInput.value.trim();
+    const player2Name = player2NameInput.value.trim();
+
+    if (!player1Name || !player2Name) {
+        alert('Por favor, insira o nome de ambos os jogadores.');
+        return;
+    }
+
+    Game.initializePlayers(player1Name, player2Name);
+    Game.loadScores(); // Load scores after players are initialized
+
+    playerSetupContainer.style.display = 'none';
+    gameContainer.style.display = 'flex'; // Show game container
+    gameContainer.classList.add('active'); // Add active class for styling
+
+    initializeGame(); // Initialize the game board and UI
 }
 
 // Inicia o jogo quando o DOM estiver totalmente carregado
-document.addEventListener('DOMContentLoaded', initializeGame);
+document.addEventListener('DOMContentLoaded', () => {
+    playerSetupContainer.style.display = 'flex'; // Show setup by default
+    gameContainer.style.display = 'none'; // Hide game by default
+    startGameButton.addEventListener('click', handleStartGameClick);
+});

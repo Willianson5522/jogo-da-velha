@@ -53,6 +53,80 @@ body {
     padding: 2rem;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 500px; /* Limit container width */
+}
+
+/* Player Setup Styles */
+.player-setup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.player-setup-container h2 {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+.player-input-group {
+    width: 80%;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.player-input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.player-input-group input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    background-color: var(--secondary-color);
+    color: var(--font-color);
+    font-size: 1rem;
+}
+
+.player-input-group input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#start-game-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--font-color);
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: var(--box-shadow);
+    margin-top: 1.5rem;
+    width: 80%;
+}
+
+#start-game-button:hover {
+    background-color: #d43d51;
+    transform: translateY(-2px);
+}
+
+/* Game Container Styles (initially hidden) */
+#game-container {
+    display: none; /* Controlled by JavaScript */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#game-container.active {
+    display: flex;
 }
 
 h1 {
@@ -70,6 +144,12 @@ h1 {
     font-size: 1.5rem;
     font-weight: 600;
     transition: color 0.3s ease;
+    animation: statusMessageChange 0.5s ease-out;
+}
+
+@keyframes statusMessageChange {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .board {
@@ -92,6 +172,16 @@ h1 {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cell.clicked {
+    animation: cellClick 0.2s ease-out;
+}
+
+@keyframes cellClick {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); }
+    100% { transform: scale(1); }
 }
 
 .cell:not(.x):not(.o):hover {

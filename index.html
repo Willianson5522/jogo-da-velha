@@ -11,6 +11,20 @@
 </head>
 <body>
     <main class="container">
+        <div id="player-setup" class="player-setup-container">
+            <h2>Configurar Jogadores</h2>
+            <div class="player-input-group">
+                <label for="player1-name">Jogador 1 (X):</label>
+                <input type="text" id="player1-name" placeholder="Nome do Jogador 1" value="Jogador X">
+            </div>
+            <div class="player-input-group">
+                <label for="player2-name">Jogador 2 (O):</label>
+                <input type="text" id="player2-name" placeholder="Nome do Jogador 2" value="Jogador O">
+            </div>
+            <button id="start-game-button">Iniciar Jogo</button>
+        </div>
+
+        <div id="game-container" style="display: none;">
         <h1>Jogo da Velha</h1>
         <div id="status-container">
             <p id="status-message">Jogador X, é a sua vez!</p>
@@ -25,10 +39,11 @@
         <div id="board" class="board"></div>
         <div id="scoreboard">
             <h2>Placar</h2>
-            <p>Jogador X: <span id="score-x">0</span></p>
-            <p>Jogador O: <span id="score-o">0</span></p>
+            <p><span id="score-x"></span></p>
+            <p><span id="score-o"></span></p>
         </div>
         <button id="restart-button">Reiniciar Jogo</button>
+        </div>
     </main>
     <script src="app.js" type="module"></script>
 </body>
