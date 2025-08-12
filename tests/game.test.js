@@ -3,7 +3,7 @@
  * @description Testes para a lógica do jogo da velha (game.js).
  */
 
-import { getGameState, handleMove, checkWinner, isDraw, resetGame, switchPlayer } from '../src/game';
+import { getGameState, handleMove, checkWinner, isDraw, resetGame, switchPlayer } from '../game';
 
 // Mock para o estado inicial antes de cada teste
 beforeEach(() => {
