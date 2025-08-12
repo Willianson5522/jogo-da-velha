@@ -11,8 +11,14 @@
 </head>
 <body>
     <main class="container">
-        <div id="player-setup" class="player-setup-container">
-            <h2>Configurar Jogadores</h2>
+        <div id="mode-selection">
+            <h2>Escolha o Modo de Jogo</h2>
+            <button id="local-mode-button">Multiplayer Local</button>
+            <button id="online-mode-button">Multiplayer Online</button>
+        </div>
+
+        <div id="player-setup" class="player-setup-container" style="display: none;">
+            <h2>Configurar Jogadores Locais</h2>
             <div class="player-input-group">
                 <label for="player1-name">Jogador 1 (X):</label>
                 <input type="text" id="player1-name" placeholder="Nome do Jogador 1" value="Jogador X">
@@ -21,8 +27,26 @@
                 <label for="player2-name">Jogador 2 (O):</label>
                 <input type="text" id="player2-name" placeholder="Nome do Jogador 2" value="Jogador O">
             </div>
-            <button id="start-game-button">Iniciar Jogo</button>
+            <button id="start-game-button">Iniciar Jogo Local</button>
+            <button id="back-to-mode-local" class="back-button">Voltar</button>
         </div>
+
+        <div id="online-game-setup" style="display: none;">
+            <h2>Multiplayer Online</h2>
+            <div class="player-input-group">
+                <label for="online-player-name">Seu Nome:</label>
+                <input type="text" id="online-player-name" placeholder="Seu Nome" value="Jogador Online">
+            </div>
+            <button id="create-game-button">Criar Novo Jogo</button>
+            <div class="player-input-group" style="margin-top: 1rem;">
+                <label for="game-id-input">ID do Jogo:</label>
+                <input type="text" id="game-id-input" placeholder="Cole o ID do Jogo">
+            </div>
+            <button id="join-game-button">Entrar no Jogo</button>
+            <button id="back-to-mode-online" class="back-button">Voltar</button>
+        </div>
+
+        <p id="game-id-display" style="margin-top: 1rem; font-weight: bold; display: none;"></p>
 
         <div id="game-container" style="display: none;">
         <h1>Jogo da Velha</h1>
@@ -44,8 +68,11 @@
         </div>
         <button id="restart-button">Reiniciar Jogo</button>
         <button id="clear-scores-button">Limpar Placar</button>
+        <button id="back-to-mode-game" class="back-button">Voltar ao Menu</button>
         </div>
     </main>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
     <script src="app.js" type="module"></script>
 </body>
 </html>

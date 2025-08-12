@@ -117,6 +117,25 @@ body {
     transform: translateY(-2px);
 }
 
+.back-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--font-color);
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: var(--box-shadow);
+    margin-top: 1.5rem; /* Add margin-top for spacing */
+}
+
+.back-button:hover {
+    background-color: #d43d51;
+    transform: translateY(-2px);
+}
+
 /* Game Container Styles (initially hidden) */
 #game-container {
     display: none; /* Controlled by JavaScript */
@@ -127,6 +146,52 @@ body {
 
 #game-container.active {
     display: flex;
+}
+
+/* Mode Selection Styles */
+#mode-selection,
+#online-game-setup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#mode-selection h2,
+#online-game-setup h2 {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+#mode-selection button,
+#online-game-setup button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--font-color);
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: var(--box-shadow);
+    margin-top: 1rem;
+    width: 80%;
+}
+
+#mode-selection button:hover,
+#online-game-setup button:hover {
+    background-color: #d43d51;
+    transform: translateY(-2px);
+}
+
+#online-game-setup .player-input-group {
+    margin-bottom: 1rem;
+}
+
+#online-game-setup #game-id-input {
+    margin-bottom: 0.5rem;
 }
 
 h1 {
@@ -243,13 +308,13 @@ h2 {
     font-size: 1rem;
     font-weight: 600;
     color: var(--font-color);
-    background-color: var(--secondary-color); /* Different color */
+    background-color: var(--accent-color);
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: var(--box-shadow);
-    margin-top: 1rem; /* Spacing between buttons */
+    margin-top: 1.5rem; /* Add margin-top for spacing */
 }
 
 #clear-scores-button:hover {
