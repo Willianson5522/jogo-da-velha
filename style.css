@@ -230,10 +230,30 @@ h2 {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: var(--box-shadow);
+    margin-top: 1.5rem; /* Add margin-top for spacing */
 }
 
 #restart-button:hover {
     background-color: #d43d51;
+    transform: translateY(-2px);
+}
+
+#clear-scores-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--font-color);
+    background-color: var(--secondary-color); /* Different color */
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: var(--box-shadow);
+    margin-top: 1rem; /* Spacing between buttons */
+}
+
+#clear-scores-button:hover {
+    background-color: #0a2a4d;
     transform: translateY(-2px);
 }
 

@@ -143,3 +143,12 @@ export function saveScores() {
     };
     localStorage.setItem('ticTacToeScores', JSON.stringify(scoresToSave));
 }
+
+/**
+ * Limpa os placares e remove do localStorage.
+ */
+export function clearScores() {
+    state.scores.X = 0;
+    state.scores.O = 0;
+    localStorage.removeItem('ticTacToeScores');
+}

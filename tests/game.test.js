@@ -3,7 +3,7 @@
  * @description Testes para a lógica do jogo da velha (game.js).
  */
 
-import { getGameState, handleMove, checkWinner, isDraw, resetGame, switchPlayer, initializePlayers, loadScores, saveScores } from '../game';
+import { getGameState, handleMove, checkWinner, isDraw, resetGame, switchPlayer, initializePlayers, loadScores, saveScores, clearScores } from '../game';
 
 // Mock para o estado inicial antes de cada teste
 beforeEach(() => {
@@ -18,6 +18,7 @@ const localStorageMock = (() => {
     return {
         getItem: jest.fn(key => store[key] || null),
         setItem: jest.fn((key, value) => { store[key] = value; }),
+        removeItem: jest.fn(key => { delete store[key]; }),
         clear: jest.fn(() => { store = {}; })
     };
 })();
@@ -188,5 +189,20 @@ describe('Lógica do Jogo da Velha', () => {
         const state = getGameState();
         expect(state).toBeDefined();
         expect(state.board).toEqual(Array(9).fill(null));
+    });
+
+    test('clearScores deve resetar os placares e limpar o localStorage', () => {
+        initializePlayers('TestX', 'TestO');
+        const state = getGameState();
+        state.scores.X = 5;
+        state.scores.O = 3;
+        saveScores(); // Ensure something is in localStorage
+
+        clearScores();
+
+        expect(state.scores.X).toBe(0);
+        expect(state.scores.O).toBe(0);
+        expect(localStorage.removeItem).toHaveBeenCalledWith('ticTacToeScores');
+        expect(localStorage.getItem('ticTacToeScores')).toBeNull();
     });
 });

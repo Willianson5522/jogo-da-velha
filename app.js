@@ -7,6 +7,7 @@ import * as Game from './game.js';
 import * as UI from './ui.js';
 
 const restartButton = document.getElementById('restart-button');
+const clearScoresButton = document.getElementById('clear-scores-button');
 const themeToggle = document.getElementById('checkbox');
 const body = document.body;
 
@@ -92,7 +93,16 @@ function initializeGame() {
     UI.updateStatusMessage(Game.getGameState().currentPlayer);
     UI.updateScores(Game.getGameState().scores);
     restartButton.addEventListener('click', handleRestartClick);
+    clearScoresButton.addEventListener('click', handleClearScoresClick); // New event listener
     themeToggle.addEventListener('change', toggleTheme);
+}
+
+/**
+ * Lida com o clique no botão Limpar Placar.
+ */
+function handleClearScoresClick() {
+    Game.clearScores();
+    UI.updateScores(Game.getGameState().scores);
 }
 
 /**
